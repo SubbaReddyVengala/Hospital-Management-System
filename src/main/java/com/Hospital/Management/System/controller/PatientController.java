@@ -34,8 +34,24 @@ public class PatientController {
         Map<String,Boolean> response = new HashMap<String,Boolean>();
         response.put("Deleted",Boolean.TRUE);
         return ResponseEntity.ok(response);
-
-
     }
+    @PutMapping("/patient/{id}")
+    public ResponseEntity<Patient> updatePatientByID(@PathVariable long id,@RequestBody Patient patientDetails) throws AttributeNotFoundException {
+     Patient patient = patientRepository.findById(id).orElseThrow(()->new AttributeNotFoundException("Patient not found with id "+id));
 
+     patient.setAge(patientDetails.getAge());
+      patient.setBlood(patientDetails.getBlood());
+      patient.setDose(patientDetails.getDose());
+      patient.setFees(patientDetails.getFees());
+      patient.setUrgency(patientDetails.getUrgency());
+      patient.setPrescription(patientDetails.getPrescription());
+      patient.setName(patientDetails.getName());
+      Patient savedPatient = patientRepository.save(patient);
+      return ResponseEntity.ok(savedPatient);
+    }
+    @GetMapping("/patient/{id}")
+    public ResponseEntity<Patient> getPatientsById(@PathVariable long id) throws AttributeNotFoundException {
+        Patient patient =patientRepository.findById(id).orElseThrow(()->new AttributeNotFoundException("Patient not found with id "+id));
+        return ResponseEntity.ok(patient);
+    }
 }
