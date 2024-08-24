@@ -1,7 +1,7 @@
 package com.Hospital.Management.System.entity;
 
 import jakarta.persistence.*;
-
+//Subba Reddy
 @Entity
 @Table(name="patients")
 public class Patient {
