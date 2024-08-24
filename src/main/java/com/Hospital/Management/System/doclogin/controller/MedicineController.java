@@ -8,7 +8,7 @@ import javax.management.AttributeNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+//sample
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v3")
